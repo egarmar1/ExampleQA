@@ -16,11 +16,11 @@ public class ComandosNavegador {
         driver = new FirefoxDriver(firefoxOptions);
         driver.manage().window().maximize();
 
-        driver.get("https://www.saucedemo.com/");
+        driver.get(originalUrl);
 
-        String titulo= driver.getTitle();
-        int titleLength= titulo.length();
-        System.out.println("Title= " + titulo + ". Length=" + titleLength);
+        String title = driver.getTitle();
+        int titleLength = title.length();
+        System.out.println("Title= " + title + ". Length=" + titleLength);
 
         String url = driver.getCurrentUrl();
 
@@ -32,7 +32,7 @@ public class ComandosNavegador {
 
 
         String source = driver.getPageSource();
-        int sourceLength= source.length();
+        int sourceLength = source.length();
 
         System.out.println("El codigo fuente tiene una longitud de " + sourceLength);
         driver.quit();

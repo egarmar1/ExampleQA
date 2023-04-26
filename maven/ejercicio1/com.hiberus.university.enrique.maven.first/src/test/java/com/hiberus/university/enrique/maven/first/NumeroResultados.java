@@ -1,19 +1,26 @@
 package com.hiberus.university.enrique.maven.first;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
-public class LoginIncorrecto {
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
+public class NumeroResultados {
 
     public static void main(String[] args) {
+
         WebDriver driver;
         WebDriverManager.firefoxdriver().setup();
         FirefoxOptions firefoxOptions = new FirefoxOptions();
 
         driver = new FirefoxDriver(firefoxOptions);
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.manage().window().maximize();
 
         driver.get("https://www.saucedemo.com/");
@@ -27,17 +34,15 @@ public class LoginIncorrecto {
         WebElement buttonLogin = driver.findElement(By.xpath("//input[@data-test='login-button']"));
         buttonLogin.click();
 
-        try {
-            WebElement errorMessage = driver.findElement(By.xpath("//h3[@data-test='error']"));
-            System.out.println("Se ha encontrado el mensaje de login incorrecto");
-        }catch (NoSuchElementException e){
-            System.out.println("No se ha encontrado el mensaje de login incorrecto");
+        List<WebElement> productosList = driver.findElements(By.xpath("//div[@clas= 'inventory_list']/child::div"));
+
+
+        if(productosList.size() == 6 ){
+            System.out.println("Si que hay 6 productos");
+        }else{
+            System.out.println("No hay 6 productos");
         }
 
         String actualUrl = driver.getCurrentUrl();
-
-
-
     }
-
 }

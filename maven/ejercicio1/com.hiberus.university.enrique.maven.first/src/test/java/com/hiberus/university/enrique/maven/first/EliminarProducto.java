@@ -10,7 +10,7 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 
 import java.util.concurrent.TimeUnit;
 
-public class BotonEliminar {
+public class EliminarProducto {
 
     public static void main(String[] args) {
         WebDriver driver;
@@ -38,15 +38,21 @@ public class BotonEliminar {
 
 
 
-        WebElement removeElement = driver.findElement(By.xpath("//button[@id='remove-sauce-labs-onesie']"));
+        driver.findElement(By.xpath("//button[@id='remove-sauce-labs-onesie']")).click();
 
 
 
-        if(removeElement.getText().equals("Remove")){
-            System.out.println("El botón dice Remove correctamente");
+        String numCarrito = driver.findElement(By.xpath("//a[@class='shopping_cart_link']")).getText();
+
+        System.out.println(numCarrito);
+
+        if(numCarrito.equals("")){
+            System.out.println("El carrito se ha vaciado correctamente");
         }else {
-            System.out.println("El botón no dice Remove");
+            System.out.println("El carrito no está vacio");
         }
+
+
         driver.close();
 
     }

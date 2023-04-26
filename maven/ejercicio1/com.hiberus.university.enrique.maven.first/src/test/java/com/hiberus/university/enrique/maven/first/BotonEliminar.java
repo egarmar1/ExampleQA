@@ -8,9 +8,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
 
-public class IncrementoCarrito {
+public class BotonEliminar {
 
     public static void main(String[] args) {
         WebDriver driver;
@@ -33,18 +32,18 @@ public class IncrementoCarrito {
         buttonLogin.click();
 
 
-        driver.findElement(By.xpath("//button[@id='add-to-cart-sauce-labs-bolt-t-shirt']")).click();
+        driver.findElement(By.xpath("//button[@id='add-to-cart-sauce-labs-onesie']")).click();
+
+        WebElement removeElement = driver.findElement(By.xpath("//button[@id='remove-sauce-labs-onesie']"));
 
 
 
-
-        String numCarrito = driver.findElement(By.xpath("//span[@class='shopping_cart_badge']")).getText();
-
-        if(numCarrito.equals("1")){
-            System.out.println("Se ha añadido al carrito correctamente");
+        if(removeElement.getText().equals("Remove")){
+            System.out.println("El botón dice Remove correctamente");
         }else {
-            System.out.println("Error al añadir el producto");
+            System.out.println("El botón no dice Remove");
         }
+        driver.close();
 
     }
 }

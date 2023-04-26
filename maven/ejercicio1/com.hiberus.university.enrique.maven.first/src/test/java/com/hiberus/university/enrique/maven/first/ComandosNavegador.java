@@ -6,7 +6,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
 public class ComandosNavegador {
-    private static String originalUrl = "https://www.saucedemo.com/";
+    private static final String originalUrl = "https://www.saucedemo.com/";
 
     public static void main(String[] args) throws InterruptedException{
         WebDriver driver;

@@ -41,7 +41,7 @@ public class EliminarProducto {
 
 
 
-        String numCarrito = "";
+
         try { //Imaginemonos que tarda más en mostrarse el carrito actualizado que el resto de la página
             driver.findElement(By.xpath("//button[@id='remove-sauce-labs-onesie']")).click();
             WebElement carrito = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@class='shopping_cart_link']")));

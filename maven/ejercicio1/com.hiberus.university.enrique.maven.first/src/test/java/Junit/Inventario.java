@@ -13,7 +13,9 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 public class Inventario {
@@ -87,6 +89,66 @@ public class Inventario {
 
     }
 
+    @Test
+    public void testEliminarProducto(){
+
+        WebElement producto = null;
+        WebElement carrito = null;
+        try {
+            producto = driver.findElement(By.xpath("//button[@id='add-to-cart-sauce-labs-bolt-t-shirt']"));
+            producto.click();
+
+
+            driver.findElement(By.xpath("//button[@id='remove-sauce-labs-bolt-t-shirt']")).click();
+            carrito = driver.findElement(By.xpath("//a[@class='shopping_cart_link']"));
+
+            Assert.assertEquals("El carrito no está vacío","",carrito.getText());
+        } catch (NoSuchElementException e) {
+            Assert.assertNotNull("No se ha encontrado el elemento carrito",carrito);
+        }
+
+    }
+
+    @Test
+    public void testAnyadir3Productos(){
+
+        WebElement producto = null;
+        String numCarrito = "";
+        try {
+            List<WebElement> productos = driver.findElements(By.xpath("//div[@class='inventory_list']/child::div/descendant::button"));
+
+            System.out.println(productos);
+
+
+            List<Integer> indices = new ArrayList<>();
+            Random random = new Random();
+
+            while (indices.size() < 3) {
+                int indice = random.nextInt(productos.size());
+                if (!indices.contains(indice)) {
+                    indices.add(indice);
+                }
+            }
+
+            WebElement producto1 = productos.get(indices.get(0));
+            WebElement producto3 = productos.get(indices.get(1));
+            WebElement producto2 = productos.get(indices.get(2));
+
+
+            producto1.click();
+            producto2.click();
+            producto3.click();
+
+            numCarrito = driver.findElement(By.xpath("//span[@class='shopping_cart_badge']")).getText();
+
+            Assert.assertEquals("No hay un solo producto en el carrito","3",numCarrito);
+
+        } catch (NoSuchElementException e) {
+            Assert.fail("No se ha encontrado el producto");
+        }
+
+
+    }
 
     @After
     public void tearDown(){

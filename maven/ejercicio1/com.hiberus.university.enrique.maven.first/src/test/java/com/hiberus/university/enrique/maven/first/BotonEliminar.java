@@ -1,10 +1,7 @@
 package com.hiberus.university.enrique.maven.first;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchContextException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
@@ -36,18 +33,24 @@ public class BotonEliminar {
 
         driver.findElement(By.xpath("//button[@id='add-to-cart-sauce-labs-onesie']")).click();
 
+        try {
+            WebElement removeElement = driver.findElement(By.xpath("//button[@id='remove-sauce-labs-onesie']"));
 
+            if(removeElement.getText().equals("Remove")){
+                System.out.println("El botón dice Remove correctamente");
+            }else {
+                System.out.println("El botón no dice Remove");
+            }
 
-        WebElement removeElement = driver.findElement(By.xpath("//button[@id='remove-sauce-labs-onesie']"));
-
-
-
-        if(removeElement.getText().equals("Remove")){
-            System.out.println("El botón dice Remove correctamente");
-        }else {
-            System.out.println("El botón no dice Remove");
+        }catch (NoSuchElementException e){
+            System.out.println("El botón o no existe o no estaba añadido");
         }
-        driver.close();
+
+
+
+
+
+
 
     }
 }

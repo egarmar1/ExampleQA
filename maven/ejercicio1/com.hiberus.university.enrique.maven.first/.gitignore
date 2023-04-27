@@ -58,3 +58,6 @@ out/
 .~lock.*.odt#
 
 *derby.log
+
+#Metodos que no quiero subir
+src/test/java/com.hiberus.university.enrique.maven.first/ejemplo.java

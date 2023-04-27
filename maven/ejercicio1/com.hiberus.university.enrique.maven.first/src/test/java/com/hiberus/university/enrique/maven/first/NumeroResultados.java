@@ -42,7 +42,5 @@ public class NumeroResultados {
         }else{
             System.out.println("No hay 6 productos");
         }
-
-        String actualUrl = driver.getCurrentUrl();
     }
 }

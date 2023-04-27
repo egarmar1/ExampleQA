@@ -1,12 +1,11 @@
 package com.hiberus.university.enrique.maven.first;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchContextException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
 
@@ -19,6 +18,7 @@ public class EliminarProducto {
 
         driver = new FirefoxDriver(firefoxOptions);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        WebDriverWait wait = new WebDriverWait(driver, 10);
         driver.manage().window().maximize();
 
         driver.get("https://www.saucedemo.com/");
@@ -38,22 +38,26 @@ public class EliminarProducto {
 
 
 
-        driver.findElement(By.xpath("//button[@id='remove-sauce-labs-onesie']")).click();
 
 
 
-        String numCarrito = driver.findElement(By.xpath("//a[@class='shopping_cart_link']")).getText();
+        String numCarrito = "";
+        try { //Imaginemonos que tarda más en mostrarse el carrito actualizado que el resto de la página
+            driver.findElement(By.xpath("//button[@id='remove-sauce-labs-onesie']")).click();
+            WebElement carrito = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@class='shopping_cart_link']")));
 
-        System.out.println(numCarrito);
+            if(carrito.getText().equals("")){
+                System.out.println("El carrito se ha vaciado correctamente");
+            }else {
+                System.out.println("El carrito no está vacio");
+            }
 
-        if(numCarrito.equals("")){
-            System.out.println("El carrito se ha vaciado correctamente");
-        }else {
-            System.out.println("El carrito no está vacio");
+        }catch (NoSuchElementException ne){
+            System.out.println("No se encuentra el botón para eliminar el producto");
+        }catch (TimeoutException te){
+            System.out.println("No se encuentra el número del carrito");
         }
 
-
-        driver.close();
 
     }
 }

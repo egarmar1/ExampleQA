@@ -2,6 +2,7 @@ package com.hiberus.university.enrique.maven.first;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -32,19 +33,26 @@ public class IncrementoCarrito {
         WebElement buttonLogin = driver.findElement(By.xpath("//input[@data-test='login-button']"));
         buttonLogin.click();
 
+        String numCarrito = null;
+        try {
+            driver.findElement(By.xpath("//button[@id='add-to-cart-sauce-labs-bolt-t-shirt']")).click();
+            numCarrito = driver.findElement(By.xpath("//span[@class='shopping_cart_badge']")).getText();
 
-        driver.findElement(By.xpath("//button[@id='add-to-cart-sauce-labs-bolt-t-shirt']")).click();
+            if(numCarrito.equals("1")){
+                System.out.println("Se ha añadido un solo producto al carrito correctamente");
+            }else {
+                System.out.println("No hay 1 solo producto añadido al carrito");
+            }
+        }catch (NoSuchElementException e){
+            System.out.println("O no se ha encontrado el botón o no se ha encontrado el span del carrito");
 
-
-
-
-        String numCarrito = driver.findElement(By.xpath("//span[@class='shopping_cart_badge']")).getText();
-
-        if(numCarrito.equals("1")){
-            System.out.println("Se ha añadido al carrito correctamente");
-        }else {
-            System.out.println("Error al añadir el producto");
         }
+
+
+
+
+
+
 
     }
 }

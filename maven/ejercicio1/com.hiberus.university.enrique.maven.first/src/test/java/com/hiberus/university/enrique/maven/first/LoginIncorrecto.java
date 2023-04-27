@@ -5,6 +5,8 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
+import java.util.concurrent.TimeUnit;
+
 public class LoginIncorrecto {
 
 
@@ -15,11 +17,12 @@ public class LoginIncorrecto {
 
         driver = new FirefoxDriver(firefoxOptions);
         driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
         driver.get("https://www.saucedemo.com/");
 
         WebElement username = driver.findElement(By.xpath("//input[@data-test='username']"));
-        username.sendKeys("standard_user");
+        username.sendKeys("standar_user");
 
         WebElement password = driver.findElement(By.xpath("//input[@data-test='password']"));
         password.sendKeys("secret_sauce");
@@ -28,13 +31,11 @@ public class LoginIncorrecto {
         buttonLogin.click();
 
         try {
-            WebElement errorMessage = driver.findElement(By.xpath("//h3[@data-test='error']"));
+            WebElement errorMessage = driver.findElement(By.xpath("//h3[@datda-test='error']"));
             System.out.println("Se ha encontrado el mensaje de login incorrecto");
         }catch (NoSuchElementException e){
             System.out.println("No se ha encontrado el mensaje de login incorrecto");
         }
-
-        String actualUrl = driver.getCurrentUrl();
 
 
 

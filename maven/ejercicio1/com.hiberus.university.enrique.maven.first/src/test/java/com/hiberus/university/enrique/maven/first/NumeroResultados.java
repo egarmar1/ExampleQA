@@ -34,7 +34,7 @@ public class NumeroResultados {
         WebElement buttonLogin = driver.findElement(By.xpath("//input[@data-test='login-button']"));
         buttonLogin.click();
 
-        List<WebElement> productosList = driver.findElements(By.xpath("//div[@clas= 'inventory_list']/child::div"));
+        List<WebElement> productosList = driver.findElements(By.xpath("//div[@class= 'inventory_list']/child::div"));
 
 
         if(productosList.size() == 6 ){

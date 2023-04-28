@@ -13,9 +13,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 public class Inventario {
@@ -117,8 +115,6 @@ public class Inventario {
         try {
             List<WebElement> productos = driver.findElements(By.xpath("//div[@class='inventory_list']/child::div/descendant::button"));
 
-            System.out.println(productos);
-
 
             List<Integer> indices = new ArrayList<>();
             Random random = new Random();
@@ -146,8 +142,67 @@ public class Inventario {
         } catch (NoSuchElementException e) {
             Assert.fail("No se ha encontrado el producto");
         }
+    }
+
+    @Test
+    public void testOrdenAlfabetico(){ //En este ejercicio he hecho de más comprobando que de verdad los productos están ordenados alfabeticamente de la z a la A
+
+        try {
+
+        // Paso 5
+        driver.findElement(By.xpath("//select[@data-test='product_sort_container']/child::option[@value='za']")).click();
+
+        //Paso 6
+        //Comprobamos se ha cambiado el texto del select a la hora de escoger la opción Z to A
+        WebElement selected = driver.findElement(By.xpath("//span[@class='active_option']"));
+
+        Assert.assertEquals("No se ha escogido la opción Z to A","Name (Z to A)",selected.getText());
+
+        //Comprobamos que los productos están ordenados alfabéticamente
+            //Obtenemos todos los productos
+        List<WebElement> productos = driver.findElements(By.xpath("//div[@class='inventory_list']/child::div[@class='inventory_item']/child::div[@class='inventory_item_description']/child::div[@class='inventory_item_label']/child::a/child::div"));
+
+            //Guardamos los nombres de los productos en dos arrays
+        String[] nombreProds = new String[productos.size()];
+        String[] actualNombreProds = new String[productos.size()];
+        for (int i = 0; i< productos.size(); i++){
+            nombreProds[i]=productos.get(i).getText();
+            actualNombreProds[i]=productos.get(i).getText();
+        }
 
 
+        //Ordenamos alfabeticamente un array y lo comprobamos con el segundo array que es el de la página web
+            Arrays.sort(nombreProds, new Comparator<String>() {
+                @Override
+                public int compare(String s1, String s2) {
+                    return s2.compareTo(s1);
+                }
+            });
+
+        Assert.assertEquals("No se ha ordenado alfabeticamente de manera correcta",nombreProds,actualNombreProds);
+        }catch (NoSuchElementException e){
+            Assert.fail("No se ha encontrado el select o la opción para filtrar");
+
+        }
+    }
+
+    @Test
+    public void testMenorAMayor(){
+
+        try {
+
+            // Paso 5
+            driver.findElement(By.xpath("//select[@data-test='product_sort_container']/child::option[@value='lohi']")).click();
+
+            //Paso 6
+            WebElement selected = driver.findElement(By.xpath("//span[@class='active_option']"));
+
+            Assert.assertEquals("No se ha escogido la opción low to high","Price (low to high)",selected.getText());
+
+        }catch (NoSuchElementException e){
+            Assert.fail("No se ha encontrado el select o la opción para filtrar");
+
+        }
     }
 
     @After

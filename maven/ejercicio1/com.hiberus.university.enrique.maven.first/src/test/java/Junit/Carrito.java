@@ -49,8 +49,9 @@ public class Carrito {
 
         WebElement buttonLogin = driver.findElement(By.xpath("//input[@data-test='login-button']"));
         buttonLogin.click();
-        WebElement producto = null;
-        String numCarrito = "";
+
+
+
         WebElement botonEliminar = null;
         try {
             //Paso 5 Agregar al carrito 2 productos al azar

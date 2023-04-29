@@ -33,14 +33,18 @@ public class Inventario {
 
         wait = new WebDriverWait(driver,5);
 
+        //Paso 1. Ir a la página de saucedemo
         driver.get(url);
 
+        //Paso 2. Escribir el username
         WebElement username = driver.findElement(By.xpath("//input[@data-test='username']"));
         username.sendKeys("standard_user");
 
+        //Paso 3. Escribir la password
         WebElement password = driver.findElement(By.xpath("//input[@data-test='password']"));
         password.sendKeys("secret_sauce");
 
+        //Paso 4. Pulsar el boton de login
         WebElement buttonLogin = driver.findElement(By.xpath("//input[@data-test='login-button']"));
         buttonLogin.click();
 
@@ -49,6 +53,7 @@ public class Inventario {
     @Test
     public void testNumProductos6(){
 
+        //Paso 5. Validar que el numero de productos es 6
         List<WebElement> productosList = driver.findElements(By.xpath("//div[@class= 'inventory_list']/child::div"));
 
         Assert.assertEquals("No hay 6 productos",6,productosList.size());
@@ -58,6 +63,7 @@ public class Inventario {
     @Test
     public void testExisteProducto(){
 
+        //Paso 5. Validar que el producto Sauce Labs Bolt T-shirt aparece
         WebElement producto = null;
         try {
             producto = driver.findElement(By.xpath("//button[@id='add-to-cart-sauce-labs-bolt-t-shirt']"));
@@ -71,18 +77,18 @@ public class Inventario {
     @Test
     public void testAnyadirProducto(){
 
-        WebElement producto = null;
+        //Paso 5. Agregar al carrito el producto Sauce Labs Bolt T-shirt
+
         String numCarrito = "";
         try {
-            producto = driver.findElement(By.xpath("//button[@id='add-to-cart-sauce-labs-bolt-t-shirt']"));
-            producto.click();
+            driver.findElement(By.xpath("//button[@id='add-to-cart-sauce-labs-bolt-t-shirt']")).click();
 
+            //Paso 6. Validar que en el icono del carrito se ha agregado un producto
             numCarrito = driver.findElement(By.xpath("//span[@class='shopping_cart_badge']")).getText();
-
             Assert.assertEquals("No hay un solo producto en el carrito","1",numCarrito);
 
         } catch (NoSuchElementException e) {
-            Assert.assertNotNull("No se ha encontrado el producto",producto);
+            Assert.fail("No se ha encontrado el producto o el carrito");
         }
 
     }
@@ -90,19 +96,20 @@ public class Inventario {
     @Test
     public void testEliminarProducto(){
 
-        WebElement producto = null;
+        //Paso 5. Agregar al carrito el producto Sauce Labs Bolt T-shirt
         WebElement carrito = null;
         try {
-            producto = driver.findElement(By.xpath("//button[@id='add-to-cart-sauce-labs-bolt-t-shirt']"));
-            producto.click();
+            driver.findElement(By.xpath("//button[@id='add-to-cart-sauce-labs-bolt-t-shirt']")).click();
 
-
+            //Paso 6. Eliminar el producto
             driver.findElement(By.xpath("//button[@id='remove-sauce-labs-bolt-t-shirt']")).click();
-            carrito = driver.findElement(By.xpath("//a[@class='shopping_cart_link']"));
 
+            //Paso 7. Validar que en el icono del carrito de ha eliminado
+            carrito = driver.findElement(By.xpath("//a[@class='shopping_cart_link']"));
             Assert.assertEquals("El carrito no está vacío","",carrito.getText());
+
         } catch (NoSuchElementException e) {
-            Assert.assertNotNull("No se ha encontrado el elemento carrito",carrito);
+            Assert.fail("No se ha encontrado el elemento carrito");
         }
 
     }
@@ -110,6 +117,7 @@ public class Inventario {
     @Test
     public void testAnyadir3Productos(){
 
+        //Paso 5. Agregar al carrito 3 productos elegidos al azar
         WebElement producto = null;
         String numCarrito = "";
         try {
@@ -135,12 +143,13 @@ public class Inventario {
             producto2.click();
             producto3.click();
 
+            //Paso 6. Validar que, en el icono del carrito se han agregado los 3 productos
             numCarrito = driver.findElement(By.xpath("//span[@class='shopping_cart_badge']")).getText();
 
             Assert.assertEquals("No hay un solo producto en el carrito","3",numCarrito);
 
         } catch (NoSuchElementException e) {
-            Assert.fail("No se ha encontrado el producto");
+            Assert.fail("No se ha encontrado el producto o el carrito");
         }
     }
 

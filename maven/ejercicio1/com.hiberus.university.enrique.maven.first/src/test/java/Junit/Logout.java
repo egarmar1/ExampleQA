@@ -56,7 +56,7 @@ public class Logout {
             driver.findElement(By.xpath("//button[@id='react-burger-menu-btn']")).click();
             driver.findElement(By.xpath("//a[@id='logout_sidebar_link']")).click();
         }catch (NoSuchElementException e){
-            Assert.fail("No se encuentra algun clickable");
+            Assert.fail("No se encuentra algún clickable");
         }
 
         //Paso 6. Validar que el logout se ha realizado correctamente

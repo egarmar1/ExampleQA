@@ -120,7 +120,7 @@ public class Inventario {
         //Paso 5. Agregar al carrito 3 productos elegidos al azar
         WebElement producto = null;
         String numCarrito = "";
-        try {
+
             List<WebElement> productos = driver.findElements(By.xpath("//div[@class='inventory_list']/child::div/descendant::button"));
 
 
@@ -143,6 +143,7 @@ public class Inventario {
             producto2.click();
             producto3.click();
 
+        try {
             //Paso 6. Validar que, en el icono del carrito se han agregado los 3 productos
             numCarrito = driver.findElement(By.xpath("//span[@class='shopping_cart_badge']")).getText();
 
@@ -200,13 +201,50 @@ public class Inventario {
 
         try {
 
-            // Paso 5
+            // Paso 5. Seleccionar el filtro low to high
             driver.findElement(By.xpath("//select[@data-test='product_sort_container']/child::option[@value='lohi']")).click();
 
-            //Paso 6
-            WebElement selected = driver.findElement(By.xpath("//span[@class='active_option']"));
+            //Paso 6. Validar el filtro
+            List<WebElement> precios = driver.findElements(By.xpath("//div[@class='inventory_item_price']"));
 
-            Assert.assertEquals("No se ha escogido la opción low to high","Price (low to high)",selected.getText());
+            double previousPrice = Double.parseDouble(precios.get(0).getText().substring(1));
+
+            for(WebElement precio : precios){
+                double newPrice = Double.parseDouble(precio.getText().substring(1));
+
+                Assert.assertFalse("The products are not listed from low to high price correctly",previousPrice > newPrice);
+                previousPrice = newPrice;
+            }
+
+
+
+        }catch (NoSuchElementException e){
+            Assert.fail("No se ha encontrado el select o la opción para filtrar");
+
+        }
+    }
+
+    @Test
+    public void testMayorAMenor(){
+
+        try {
+
+            // Paso 5. Seleccionar el filtro low to high
+            driver.findElement(By.xpath("//select[@data-test='product_sort_container']/child::option[@value='hilo']")).click();
+
+            //Paso 6. Validar el filtro
+            List<WebElement> precios = driver.findElements(By.xpath("//div[@class='inventory_item_price']"));
+
+            double previousPrice = Double.parseDouble(precios.get(0).getText().substring(1));
+
+            for(WebElement precio : precios){
+                double newPrice = Double.parseDouble(precio.getText().substring(1));
+
+                Assert.assertFalse("The products are not listed from high to low price correctly",previousPrice < newPrice);
+                previousPrice = newPrice;
+            }
+
+
 
         }catch (NoSuchElementException e){
             Assert.fail("No se ha encontrado el select o la opción para filtrar");

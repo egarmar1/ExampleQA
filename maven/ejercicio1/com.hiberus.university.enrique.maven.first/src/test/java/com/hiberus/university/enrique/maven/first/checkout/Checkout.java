@@ -1,4 +1,4 @@
-package com.hiberus.university.enrique.maven.first.Junit.Tests.checkout;
+package com.hiberus.university.enrique.maven.first.checkout;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;

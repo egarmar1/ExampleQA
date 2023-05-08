@@ -1,4 +1,4 @@
-package com.hiberus.university.enrique.maven.first;
+package com.hiberus.university.enrique.maven.first.ejemplos;
 
 import static org.junit.Assert.assertTrue;
 

@@ -1,13 +1,13 @@
-package com.hiberus.university.enrique.maven.first;
+package com.hiberus.university.enrique.maven.first.ejemplos;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
-public class LoginCorrecto {
+import java.util.concurrent.TimeUnit;
+
+public class BotonEliminar {
 
     public static void main(String[] args) {
         WebDriver driver;
@@ -15,6 +15,7 @@ public class LoginCorrecto {
         FirefoxOptions firefoxOptions = new FirefoxOptions();
 
         driver = new FirefoxDriver(firefoxOptions);
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.manage().window().maximize();
 
         driver.get("https://www.saucedemo.com/");
@@ -28,12 +29,28 @@ public class LoginCorrecto {
         WebElement buttonLogin = driver.findElement(By.xpath("//input[@data-test='login-button']"));
         buttonLogin.click();
 
-        String actualUrl = driver.getCurrentUrl();
 
-        if("https://www.saucedemo.com/inventory.html".equals(actualUrl)){
-            System.out.println("Coincide");
-        }else{
-            System.out.println("No coincide");
+
+        driver.findElement(By.xpath("//button[@id='add-to-cart-sauce-labs-onesie']")).click();
+
+        try {
+            WebElement removeElement = driver.findElement(By.xpath("//button[@id='remove-sauce-labs-onesie']"));
+
+            if(removeElement.getText().equals("Remove")){
+                System.out.println("El botón dice Remove correctamente");
+            }else {
+                System.out.println("El botón no dice Remove");
+            }
+
+        }catch (NoSuchElementException e){
+            System.out.println("El botón o no existe o no estaba añadido");
         }
+
+
+
+
+
+
+
     }
 }

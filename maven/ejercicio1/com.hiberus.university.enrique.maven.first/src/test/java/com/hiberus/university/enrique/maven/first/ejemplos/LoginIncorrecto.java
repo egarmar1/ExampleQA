@@ -1,32 +1,28 @@
-package com.hiberus.university.enrique.maven.first;
+package com.hiberus.university.enrique.maven.first.ejemplos;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class NumeroResultados {
+public class LoginIncorrecto {
+
 
     public static void main(String[] args) {
-
         WebDriver driver;
         WebDriverManager.firefoxdriver().setup();
         FirefoxOptions firefoxOptions = new FirefoxOptions();
 
         driver = new FirefoxDriver(firefoxOptions);
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
         driver.get("https://www.saucedemo.com/");
 
         WebElement username = driver.findElement(By.xpath("//input[@data-test='username']"));
-        username.sendKeys("standard_user");
+        username.sendKeys("standar_user");
 
         WebElement password = driver.findElement(By.xpath("//input[@data-test='password']"));
         password.sendKeys("secret_sauce");
@@ -34,13 +30,15 @@ public class NumeroResultados {
         WebElement buttonLogin = driver.findElement(By.xpath("//input[@data-test='login-button']"));
         buttonLogin.click();
 
-        List<WebElement> productosList = driver.findElements(By.xpath("//div[@class= 'inventory_list']/child::div"));
-
-
-        if(productosList.size() == 6 ){
-            System.out.println("Si que hay 6 productos");
-        }else{
-            System.out.println("No hay 6 productos");
+        try {
+            WebElement errorMessage = driver.findElement(By.xpath("//h3[@datda-test='error']"));
+            System.out.println("Se ha encontrado el mensaje de login incorrecto");
+        }catch (NoSuchElementException e){
+            System.out.println("No se ha encontrado el mensaje de login incorrecto");
         }
+
+
+
     }
+
 }

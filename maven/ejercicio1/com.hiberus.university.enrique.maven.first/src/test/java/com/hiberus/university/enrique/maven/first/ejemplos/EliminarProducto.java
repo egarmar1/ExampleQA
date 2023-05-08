@@ -1,4 +1,4 @@
-package com.hiberus.university.enrique.maven.first;
+package com.hiberus.university.enrique.maven.first.ejemplos;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.*;

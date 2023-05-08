@@ -1,10 +1,7 @@
-package com.hiberus.university.enrique.maven.first.Junit.Tests.logout;
+package com.hiberus.university.enrique.maven.first.login;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -15,12 +12,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
 
-public class Logout {
-
+public class Login {
     WebDriver driver;
     String url = "https://www.saucedemo.com/";
     WebDriverWait wait;
-
     @Before
     public void setUp(){
         WebDriverManager.firefoxdriver().setup();
@@ -38,7 +33,8 @@ public class Logout {
     }
 
     @Test
-    public void testLogout(){
+    public void testLoginCorrecto(){
+
         //Paso 2. Escribir el username
         WebElement username = driver.findElement(By.xpath("//input[@data-test='username']"));
         username.sendKeys("standard_user");
@@ -47,23 +43,41 @@ public class Logout {
         WebElement password = driver.findElement(By.xpath("//input[@data-test='password']"));
         password.sendKeys("secret_sauce");
 
-        //Paso 4. Pulsar el boton del Login
+        //Paso 4. Pulsar el boton de login
         WebElement buttonLogin = driver.findElement(By.xpath("//input[@data-test='login-button']"));
         buttonLogin.click();
 
-        //Paso 5. Realizar el Logout
-        try {
-            driver.findElement(By.xpath("//button[@id='react-burger-menu-btn']")).click();
-            driver.findElement(By.xpath("//a[@id='logout_sidebar_link']")).click();
-        }catch (NoSuchElementException e){
-            Assert.fail("No se encuentra algún clickable");
-        }
-
-        //Paso 6. Validar que el logout se ha realizado correctamente
+        //Paso 5. Validdar que la url es correcta
         String actualUrl = driver.getCurrentUrl();
+        Assert.assertEquals("No nos encontramos en la página esperada","https://www.saucedemo.com/inventory.html",actualUrl);
 
-        Assert.assertEquals("No se ha redirigido a la pantalla de inicio tras cerrar sesion",url,actualUrl);
     }
+
+
+    @Test
+    public void testLoginIncorrecto() {
+        //Paso 2. Escribir el username incorrectamente
+        WebElement username = driver.findElement(By.xpath("//input[@data-test='username']"));
+        username.sendKeys("standar_user");
+
+        //Paso 3. Escribir la password
+        WebElement password = driver.findElement(By.xpath("//input[@data-test='password']"));
+        password.sendKeys("secret_sauce");
+
+        //Paso 4. Pulsar el boton de login
+        WebElement buttonLogin = driver.findElement(By.xpath("//input[@data-test='login-button']"));
+        buttonLogin.click();
+
+        //Paso 5. Validar que aparece el mensaje de error
+
+        try {
+            driver.findElement(By.xpath("//h3[@data-test='error']"));
+
+        } catch (NoSuchElementException e) {
+            Assert.fail("No se ha encontrado el mensaje de error");
+        }
+    }
+
 
     @After
     public void tearDown(){

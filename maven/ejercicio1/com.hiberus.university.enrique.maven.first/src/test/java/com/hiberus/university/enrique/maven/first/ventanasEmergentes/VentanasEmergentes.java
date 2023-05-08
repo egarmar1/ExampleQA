@@ -1,4 +1,4 @@
-package com.hiberus.university.enrique.maven.first.Junit.Tests.ventanasEmergentes;
+package com.hiberus.university.enrique.maven.first.ventanasEmergentes;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;

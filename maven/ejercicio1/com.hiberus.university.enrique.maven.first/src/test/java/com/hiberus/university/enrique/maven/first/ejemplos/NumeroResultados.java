@@ -1,15 +1,20 @@
-package com.hiberus.university.enrique.maven.first;
+package com.hiberus.university.enrique.maven.first.ejemplos;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class BotonEliminar {
+public class NumeroResultados {
 
     public static void main(String[] args) {
+
         WebDriver driver;
         WebDriverManager.firefoxdriver().setup();
         FirefoxOptions firefoxOptions = new FirefoxOptions();
@@ -29,28 +34,13 @@ public class BotonEliminar {
         WebElement buttonLogin = driver.findElement(By.xpath("//input[@data-test='login-button']"));
         buttonLogin.click();
 
+        List<WebElement> productosList = driver.findElements(By.xpath("//div[@class= 'inventory_list']/child::div"));
 
 
-        driver.findElement(By.xpath("//button[@id='add-to-cart-sauce-labs-onesie']")).click();
-
-        try {
-            WebElement removeElement = driver.findElement(By.xpath("//button[@id='remove-sauce-labs-onesie']"));
-
-            if(removeElement.getText().equals("Remove")){
-                System.out.println("El botón dice Remove correctamente");
-            }else {
-                System.out.println("El botón no dice Remove");
-            }
-
-        }catch (NoSuchElementException e){
-            System.out.println("El botón o no existe o no estaba añadido");
+        if(productosList.size() == 6 ){
+            System.out.println("Si que hay 6 productos");
+        }else{
+            System.out.println("No hay 6 productos");
         }
-
-
-
-
-
-
-
     }
 }

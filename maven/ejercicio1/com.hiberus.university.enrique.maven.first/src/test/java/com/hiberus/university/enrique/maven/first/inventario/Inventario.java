@@ -1,4 +1,4 @@
-package com.hiberus.university.enrique.maven.first.Junit.Tests.inventario;
+package com.hiberus.university.enrique.maven.first.inventario;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;

@@ -1,4 +1,4 @@
-package Junit;
+package com.hiberus.university.enrique.maven.first.Junit.Tests.checkout;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;

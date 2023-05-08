@@ -1,6 +1,5 @@
-package Junit;
+package com.hiberus.university.enrique.maven.first.Junit.Tests.carrito;
 
-import io.cucumber.java.mk_latn.No;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
 import org.junit.Assert;

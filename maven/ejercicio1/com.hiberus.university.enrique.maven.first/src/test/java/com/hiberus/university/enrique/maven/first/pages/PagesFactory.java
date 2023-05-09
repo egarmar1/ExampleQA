@@ -27,7 +27,7 @@ public class PagesFactory {
         checkOutStepSecondPage = new CheckOutStepSecondPage(driver);
         checkOutCompletePage = new CheckOutCompletePage(driver);
 
-        //inicializar nuestras Pages
+
     }
 
     public static void start(WebDriver driver){
@@ -36,5 +36,13 @@ public class PagesFactory {
 
     public WebDriver getDriver(){
         return driver;
+    }
+
+    public static PagesFactory getInstance() {
+        return pagesFactories;
+    }
+
+    public LoginPage getLoginPage(){
+        return loginPage;
     }
 }

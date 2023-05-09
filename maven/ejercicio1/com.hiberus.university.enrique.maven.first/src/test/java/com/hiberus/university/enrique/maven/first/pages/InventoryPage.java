@@ -13,6 +13,7 @@ import java.util.List;
 
 public class InventoryPage  extends AbstractPage{
 
+    public static final String PAGE_URL = "https://www.saucedemo.com/inventory.html";
     @FindBy(css = "option[value='az']")
     private WebElement sortAZ;
     @FindBy(css = "option[value='lohi']")

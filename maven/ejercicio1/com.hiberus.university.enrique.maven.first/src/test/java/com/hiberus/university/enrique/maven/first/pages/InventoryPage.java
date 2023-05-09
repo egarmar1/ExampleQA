@@ -7,34 +7,25 @@ import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class InventoryPage  extends AbstractPage{
 
-    @FindAll({
-            @FindBy(css = "select[class='product_sort_container'] > option")
-    })
-    private List<WebElement> productSortOptions;
-
-    @FindAll({
-            @FindBy(css = "div[class='inventory_item_name']")
-    })
+    @FindBy(css = "option[value='az']")
+    private WebElement sortAZ;
+    @FindBy(css = "option[value='lohi']")
+    private WebElement sortLohi;
+    @FindBy(css = "option[value='hilo']")
+    private WebElement sortHilo;
+    @FindBy(css = "div[class='inventory_item_name']")
     private List<WebElement> productNames;
-
-
-    @FindAll({
-            @FindBy(css = "div[class='inventory_item_price']")
-    })
+    @FindBy(css = "div[class='inventory_item_price']")
     private List<WebElement> productPrices;
-
-    @FindAll({
-            @FindBy(css = "button[data-test^='add-to-cart']")
-    })
+    @FindBy(css = "button[data-test^='add-to-cart']")
     private List<WebElement> addToCartButtons;
-
-    @FindAll({
-            @FindBy(css = "button[data-test^='remove']")
-    })
+    @FindBy(css = "button[data-test^='remove']")
     private List<WebElement> removeButtons;
 
     @FindBy(id= "react-burger-menu-btn")
@@ -57,10 +48,6 @@ public class InventoryPage  extends AbstractPage{
         return null;
     }
 
-    public List<WebElement> getProductSortOptions(){
-        return productSortOptions;
-    }
-
     public List<WebElement> getProductPrices(){
         return productPrices;
     }
@@ -73,16 +60,43 @@ public class InventoryPage  extends AbstractPage{
         return removeButtons;
     }
 
+    public void clickRemoveRandomButtons(int num){//Num of random items you want to remove
+        if(num <=0){
+            return;
+        }
+        List<WebElement> randomButtons = new ArrayList<>();
+        for (WebElement removeButton : removeButtons) {
+            randomButtons.add(removeButton);
+        }
+        Collections.shuffle(randomButtons);
+
+        for(int i=0; i<num; i++){
+            randomButtons.get(i).click();
+        }
+    }
+
+    public void clickSortZA(){
+        sortAZ.click();
+    }
+
+    public void clickSortLohi(){
+        sortLohi.click();
+    }
+
+    public void clickSortHilo(){
+        sortHilo.click();
+    }
+
     public List<WebElement> getProductNames(){
         return productNames;
     }
 
-    public WebElement getOpenMenuButton(){
-        return openMenuButton;
+    public void openMenu(){
+        openMenuButton.click();
     }
 
-    public WebElement getLogoutButton(){
-        return logoutButton;
+    public void clickLogout(){
+        logoutButton.click();
     }
 
     public WebElement getShoppingCartLink(){

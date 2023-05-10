@@ -39,7 +39,7 @@ public class LoginSuiteTest {
     }
 
     @Test
-    public void testLoginCorrecto(){
+    public void loginCorrectoTest(){
 
         //Paso 2. Escribir el username
         loginPage.enterUsername("standard_user");
@@ -57,7 +57,7 @@ public class LoginSuiteTest {
 
 
     @Test
-    public void testLoginIncorrecto() {
+    public void loginIncorrectoTest() {
 
 
         PagesFactory pagesFactory = PagesFactory.getInstance();

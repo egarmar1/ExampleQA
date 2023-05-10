@@ -15,7 +15,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
 
-public class Logout {
+public class LogoutSuiteTest {
 
     WebDriver driver;
     String url = "https://www.saucedemo.com/";

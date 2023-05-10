@@ -16,7 +16,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
-public class Checkout {
+public class CheckoutSuiteTest {
     WebDriver driver;
     String url = "https://www.saucedemo.com/";
     WebDriverWait wait;

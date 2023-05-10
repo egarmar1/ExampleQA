@@ -45,4 +45,8 @@ public class PagesFactory {
     public LoginPage getLoginPage(){
         return loginPage;
     }
+
+    public InventoryPage getInventoryPage(){
+        return inventoryPage;
+    }
 }

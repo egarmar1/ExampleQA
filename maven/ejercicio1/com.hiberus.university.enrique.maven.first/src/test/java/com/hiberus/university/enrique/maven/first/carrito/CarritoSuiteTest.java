@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
-public class Carrito {
+public class CarritoSuiteTest {
 
     WebDriver driver;
     String url = "https://www.saucedemo.com/";

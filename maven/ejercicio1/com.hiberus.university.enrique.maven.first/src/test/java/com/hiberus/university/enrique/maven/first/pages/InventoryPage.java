@@ -1,6 +1,7 @@
 package com.hiberus.university.enrique.maven.first.pages;
 
 import com.hiberus.university.enrique.maven.first.model.InventoryItem;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
@@ -14,8 +15,8 @@ import java.util.List;
 public class InventoryPage  extends AbstractPage{
 
     public static final String PAGE_URL = "https://www.saucedemo.com/inventory.html";
-    @FindBy(css = "option[value='az']")
-    private WebElement sortAZ;
+    @FindBy(css = "option[value='za']")
+    private WebElement sortZA;
     @FindBy(css = "option[value='lohi']")
     private WebElement sortLohi;
     @FindBy(css = "option[value='hilo']")
@@ -75,9 +76,27 @@ public class InventoryPage  extends AbstractPage{
             randomButtons.get(i).click();
         }
     }
+    public void clickAddRandomButtons(int num){//Num of random items you want to remove
+        if(num <=0){
+            return;
+        }
+        List<WebElement> randomButtons = new ArrayList<>();
+        for (WebElement addToCartButton : addToCartButtons) {
+            randomButtons.add(addToCartButton);
+        }
+        Collections.shuffle(randomButtons);
+
+        for(int i=0; i<num; i++){
+            randomButtons.get(i).click();
+        }
+    }
+
+    public String getNumCartIcon(){
+        return shoppingCartLink.getText();
+    }
 
     public void clickSortZA(){
-        sortAZ.click();
+        sortZA.click();
     }
 
     public void clickSortLohi(){
@@ -90,6 +109,19 @@ public class InventoryPage  extends AbstractPage{
 
     public List<WebElement> getProductNames(){
         return productNames;
+    }
+
+    public boolean existsProductByName(String name){
+        return getDriver().findElement(By.xpath("//div[contains(text(),'" + name + "')]")).isDisplayed();
+    }
+
+    public void clickProductByName(String name){
+        name = name.toLowerCase().replace(" ","-");
+        getDriver().findElement(By.cssSelector("button[data-test='add-to-cart-" +name + "']")).click();
+    }
+    public void removeProductByName(String name){
+        name = name.toLowerCase().replace(" ","-");
+        getDriver().findElement(By.cssSelector("button[data-test='remove-" +name + "']")).click();
     }
 
     public void openMenu(){

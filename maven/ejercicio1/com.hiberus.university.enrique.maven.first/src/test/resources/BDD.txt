@@ -26,14 +26,14 @@ Caso de prueba 4 (Validar que existe el producto Sauce labs Bolt T-shirt en el i
 Given el usuario se encuentra en la página de inicio "https://www.saucedemo.com/"
 When el usuario proporciona el usuario "standard_user" y contraseña "secret_sauce"
 And el usuario hace click en el botón "Login"
-Then se muestran el producto Sauce Labs Bolt T-shirt
+Then se muestra el producto Sauce Labs Bolt T-shirt
 
 Caso de prueba 5 (Añadir el producto Sauce Labs Bolt T-shirt): 
 Given el usuario se encuentra en la página de inicio "https://www.saucedemo.com/"
 When el usuario proporciona el usuario "standard_user" y contraseña "secret_sauce"
 And el usuario hace click en el botón "Login"
 And el usuario agrega al carrito el producto Sauce Labs Bolt T-Shirt
-Then en el icono del carrito se ha agregado 1 producto
+Then el icono del carrito muestra el numero 1
 
 Caso de prueba 6 (Eliminar producto del carrito desde el inventario): 
 Given el usuario se encuentra en la página de inicio "https://www.saucedemo.com/"
@@ -41,14 +41,14 @@ When el usuario proporciona el usuario "standard_user" y contraseña "secret_sau
 And el usuario hace click en el botón "Login"
 And el usuario agrega al carrito el producto Sauce Labs Bolt T-Shirt
 And el usuario pulsa el botón remove del producto Sauce Labs Bolt T-shirt
-Then en el icono del carrito no aparece el producto añadido
+Then en el icono del carrito no aparece ningun numero
 
 Caso de prueba 7 (Agregar al carrito 3 productos): 
 Given el usuario se encuentra en la página de inicio "https://www.saucedemo.com/"
 When el usuario proporciona el usuario "standard_user" y contraseña "secret_sauce"
 And el usuario hace click en el botón "Login"
 And el usuario agrega al carrito 3 productos aleatorios
-Then en el icono del carrito no aparece el numero 3
+Then en el icono del carrito aparece el numero 3
 
 
 Caso de prueba 8 (Ordenar el inventario por orden alfabético, Z a la A): 
@@ -56,13 +56,6 @@ Given el usuario se encuentra en la página de inicio "https://www.saucedemo.com
 When el usuario proporciona el usuario "standard_user" y contraseña "secret_sauce"
 And el usuario hace click en el botón "Login"
 And el usuario escoge el filtro NAME (Z TO A)
-Then el usuario visualiza los productos ordenaos alfabéticamente de la Z a la A
-
-Caso de prueba 9 (Ordenar el inventario por orden alfabético, Z a la A): 
-Given el usuario se encuentra en la página de inicio "https://www.saucedemo.com/"
-When el usuario proporciona el usuario "standard_user" y contraseña "secret_sauce"
-And el usuario hace click en el botón "Login"
-And el usuario escoge el filtro "NAME (Z TO A)"
 Then el usuario visualiza los productos ordenados alfabéticamente de la Z a la A
 
 Caso de prueba 10 (Ordenar el inventario de menor a mayor): 

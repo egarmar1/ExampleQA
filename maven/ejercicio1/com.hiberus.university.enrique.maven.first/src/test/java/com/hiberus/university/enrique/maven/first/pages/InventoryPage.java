@@ -107,6 +107,9 @@ public class InventoryPage  extends AbstractPage{
         sortHilo.click();
     }
 
+    public void goToCart(){
+        shoppingCartLink.click();
+    }
     public List<WebElement> getProductNames(){
         return productNames;
     }

@@ -1,5 +1,9 @@
 package com.hiberus.university.enrique.maven.first.carrito;
 
+import com.hiberus.university.enrique.maven.first.pages.CartPage;
+import com.hiberus.university.enrique.maven.first.pages.InventoryPage;
+import com.hiberus.university.enrique.maven.first.pages.LoginPage;
+import com.hiberus.university.enrique.maven.first.pages.PagesFactory;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
 import org.junit.Assert;
@@ -20,8 +24,10 @@ import java.util.concurrent.TimeUnit;
 
 public class CarritoSuiteTest {
 
-    WebDriver driver;
-    String url = "https://www.saucedemo.com/";
+    public static WebDriver driver;
+    public LoginPage loginPage;
+    public InventoryPage inventoryPage;
+    public CartPage cartPage;
     WebDriverWait wait;
     @Before
     public void setUp(){
@@ -33,70 +39,44 @@ public class CarritoSuiteTest {
         driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
         driver.manage().window().maximize();
 
+        PagesFactory.start(driver);
 
-        driver.get(url);
+
+
     }
 
     @Test
     public void testCarrito(){
 
-        WebElement username = driver.findElement(By.xpath("//input[@data-test='username']"));
-        username.sendKeys("standard_user");
+        //Paso 1. Ir a la página de saucedemo
+        driver.get(loginPage.PAGE_URL);
 
-        WebElement password = driver.findElement(By.xpath("//input[@data-test='password']"));
-        password.sendKeys("secret_sauce");
+        PagesFactory pagesFactory = PagesFactory.getInstance();
+        loginPage = pagesFactory.getLoginPage();
+        inventoryPage = pagesFactory.getInventoryPage();
+        cartPage = pagesFactory.getCartPage();
 
-        WebElement buttonLogin = driver.findElement(By.xpath("//input[@data-test='login-button']"));
-        buttonLogin.click();
-
-
-
-        WebElement botonEliminar = null;
-        try {
-            //Paso 5 Agregar al carrito 2 productos al azar
-            List<WebElement> productos = driver.findElements(By.xpath("//div[@class='inventory_list']/child::div/descendant::button"));
-
-
-            List<Integer> indices = new ArrayList<>();
-            Random random = new Random();
-
-            while (indices.size() < 2) {
-                int indice = random.nextInt(productos.size());
-                if (!indices.contains(indice)) {
-                    indices.add(indice);
-                }
-            }
-
-            WebElement producto1 = productos.get(indices.get(0));
-            WebElement producto2 = productos.get(indices.get(1));
+        //Paso 2. Escribir el username
+        loginPage.enterUsername("standard_user");
+        //Paso 3. Escribir la password
+        loginPage.enterPassword("secret_sauce");
+        //Paso 4. Pulsar el boton de login
+        loginPage.clickLogin();
 
 
-            producto1.click();
-            producto2.click();
-            //Paso 6. Ir al carrito
-            driver.findElement(By.xpath("//a[@class='shopping_cart_link']")).click();
+        //Paso 5 Agregar al carrito 2 productos al azar
+        inventoryPage.clickAddRandomButtons(2);
 
-            int randomNum = random.nextInt(2) + 1;
+        //Paso 6. Ir al carrito
+        inventoryPage.goToCart();
 
-            //Paso 7. Eliminar uno de los productos
-            botonEliminar = driver.findElement(By.xpath("(//div[@class='item_pricebar']/child::button)["+ randomNum + "]"));
-        } catch (NoSuchElementException e) {
-            Assert.fail("No se ha encontrado el producto");
-        }
-
-            //Paso 8. Validar que el producto no aparece en el carrito
-        String idBoton = botonEliminar.getAttribute("id");
-        botonEliminar.click();
-        try {
-           driver.findElement(By.id(idBoton));
-           Assert.fail("El producto continua en el carrito");
-        }catch (NoSuchElementException e){
-            System.out.println("Producto eliminado correctamente");
-        }
+        //Paso 7. Eliminar uno de los productos
+        String buttonId = cartPage.deleteRandomFromCart();
 
 
+        //Paso 8. Validar que el producto no aparece en el carrito
 
-
+        Assert.assertFalse("The product still exists",cartPage.existsById(buttonId));
 
     }
 

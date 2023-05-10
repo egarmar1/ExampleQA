@@ -23,6 +23,6 @@ public class CheckOutCompletePage extends AbstractPage{
     }
 
     public String getCompleteText(){
-        return completeText.toString();
+        return completeText.getText();
     }
 }

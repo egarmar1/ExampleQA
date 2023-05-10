@@ -49,4 +49,19 @@ public class PagesFactory {
     public InventoryPage getInventoryPage(){
         return inventoryPage;
     }
+
+    public CartPage getCartPage(){
+        return cartPage;
+    }
+
+    public CheckOutStepOnePage getCheckOutStepOnePage(){
+        return checkOutStepOnePage;
+    }
+    public CheckOutStepSecondPage getCheckOutStepSecondPage(){
+        return checkOutStepSecondPage;
+    }
+    public CheckOutCompletePage getCheckOutCompletePage(){
+        return checkOutCompletePage;
+    }
+
 }

@@ -34,8 +34,8 @@ public class CheckOutStepSecondPage extends AbstractPage{
         finishButton.click();
     }
 
-    public String getItemTotal(){
-        return itemTotal.toString();
+    public WebElement getItemTotal(){
+        return itemTotal;
     }
 
     public List<WebElement> getItemPrices(){

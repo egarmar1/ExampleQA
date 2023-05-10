@@ -1,5 +1,7 @@
 package com.hiberus.university.enrique.maven.first.pages;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -39,10 +41,24 @@ public class CartPage extends AbstractPage{
         return itemList;
     }
 
-    public void deleteRandomFromCart(){
+    public String deleteRandomFromCart(){
         Random rand = new Random();
         int index = rand.nextInt(removeButtons.size());
+        String productName = removeButtons.get(index).getAttribute("id");
+
         removeButtons.get(index).click();
+
+        return productName;
+    }
+
+    public boolean existsById(String id){
+        try{
+            getDriver().findElement(By.cssSelector("#id")).isDisplayed();
+            return true;
+        }catch (NoSuchElementException ne){
+            return false;
+        }
+
     }
 
 }

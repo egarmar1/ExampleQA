@@ -88,7 +88,7 @@ Then el usuario deja de visualizar en el carrito el producto eliminado
 
 Checkout:
 
-Caso de prueba 13 (Comrpobar el precio final del checkout de varios productos):
+Caso de prueba 13 (Comprobar el precio final del checkout de varios productos):
 Given el usuario se encuentra en la página de inicio "https://www.saucedemo.com/"
 When el usuario proporciona el usuario "standard_user" y contraseña "secret_sauce"
 And el usuario hace click en el botón "Login"
@@ -102,7 +102,7 @@ Caso de prueba 14 (Realizar un pedido):
 Given el usuario se encuentra en la página de inicio "https://www.saucedemo.com/"
 When el usuario proporciona el usuario "standard_user" y contraseña "secret_sauce"
 And el usuario hace click en el botón "Login"
-And el usuario agrega 3 productos aleatorios al carrito
+And el usuario agrega 1 producto aleatorio al carrito
 And el usuario se redirige al carrito
 And el usuario clicka el botón checkout
 And el usuario rellena los datos del checkout y clicka el botón continuar

@@ -26,11 +26,17 @@ Feature: Inventory test suite
 
   @Add3products
   Scenario: Add 3 random products
-    And the user adds to cart 3 random numbers
+    And the user adds to cart 3 random products
     And the user clicks the button remove from the product Sauce Labs Bolt T-shirt
     Then the icon of the cart shows the number 3
 
   @Order
-  Scenario: order products from Z TO A
-    And the user chooses the option "filtro"
-    Then the user views the products sorted alphabetically from Z to A
+  Scenario Outline: order products by filter
+    And the user chooses the option "filter"
+    Then the user views the products sorted by "filter"
+
+  Examples:
+  | filter              |
+  | NAME (Z TO A)       |
+  | PRICE (low to high) |
+  | PRICE (high to low) |

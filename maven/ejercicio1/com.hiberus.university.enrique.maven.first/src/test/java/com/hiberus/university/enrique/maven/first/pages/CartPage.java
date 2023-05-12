@@ -53,7 +53,7 @@ public class CartPage extends AbstractPage{
 
     public boolean existsById(String id){
         try{
-            getDriver().findElement(By.cssSelector("#id")).isDisplayed();
+            getDriver().findElement(By.cssSelector("#"+id)).isDisplayed();
             return true;
         }catch (NoSuchElementException ne){
             return false;

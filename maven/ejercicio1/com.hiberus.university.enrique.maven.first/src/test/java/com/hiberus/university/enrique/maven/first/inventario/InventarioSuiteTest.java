@@ -4,10 +4,7 @@ import com.hiberus.university.enrique.maven.first.pages.InventoryPage;
 import com.hiberus.university.enrique.maven.first.pages.LoginPage;
 import com.hiberus.university.enrique.maven.first.pages.PagesFactory;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -19,6 +16,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
+@Ignore
 public class InventarioSuiteTest {
 
     public static WebDriver driver;

@@ -45,4 +45,9 @@ public class LoginPageSteps {
     public void theUserViewsAMessageError() {
         Assert.assertTrue(loginPage.hasErrorMessage());
     }
+
+    @Then("the user is on the login page")
+    public void theUserIsOnTheLoginPage() {
+        Assert.assertEquals("No se ha redirigido a la pantalla de inicio tras cerrar sesion",loginPage.PAGE_URL,PagesFactory.getInstance().getDriver().getCurrentUrl());
+    }
 }

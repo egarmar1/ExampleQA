@@ -16,7 +16,8 @@ import java.util.concurrent.TimeUnit;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         plugin = {"pretty"},
-        glue = {"com/university/enrique/maven/first/stepdefs"},
+        glue = {"com/university/enrique/maven/first/stepdefs",
+                "com/university/enrique/maven/first/support"},
         features = {"src/test/resources"}
 )
 public class CucumberRunnerTest {

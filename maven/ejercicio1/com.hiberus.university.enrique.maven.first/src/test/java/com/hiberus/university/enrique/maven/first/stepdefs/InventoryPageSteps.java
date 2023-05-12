@@ -118,4 +118,14 @@ public class InventoryPageSteps {
             }
         }
     }
+
+    @And("the user clicks the dropdown menu")
+    public void theUserClicksTheDropdownMenu() {
+        inventoryPage.openMenu();
+    }
+
+    @And("the user clicks the logout link")
+    public void theUserClicksTheLogoutLink() {
+        inventoryPage.clickLogout();
+    }
 }

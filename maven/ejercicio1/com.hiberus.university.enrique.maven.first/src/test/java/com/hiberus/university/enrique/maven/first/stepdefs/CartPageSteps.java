@@ -32,4 +32,9 @@ public class CartPageSteps {
         inventoryItem.setName(itemName);
         TestDataContext.addItem(inventoryItem);
     }
+
+    @And("the user clicks the button checkout")
+    public void theUserClicksTheButtonCheckout() {
+        cartPage.clickCheckout();
+    }
 }

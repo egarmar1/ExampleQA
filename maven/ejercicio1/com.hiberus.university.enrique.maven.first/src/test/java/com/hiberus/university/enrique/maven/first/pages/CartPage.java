@@ -1,5 +1,6 @@
 package com.hiberus.university.enrique.maven.first.pages;
 
+import com.hiberus.university.enrique.maven.first.utils.Utils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -42,6 +43,7 @@ public class CartPage extends AbstractPage{
     }
 
     public String deleteRandomFromCart(){
+
         Random rand = new Random();
         int index = rand.nextInt(removeButtons.size());
         String productName = removeButtons.get(index).getAttribute("id");

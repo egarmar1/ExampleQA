@@ -1,10 +1,9 @@
 package com.hiberus.university.enrique.maven.first.pages;
 
-import com.hiberus.university.enrique.maven.first.model.InventoryItem;
+import com.hiberus.university.enrique.maven.first.utils.Utils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -63,32 +62,10 @@ public class InventoryPage  extends AbstractPage{
     }
 
     public void clickRemoveRandomButtons(int num){//Num of random items you want to remove
-        if(num <=0){
-            return;
-        }
-        List<WebElement> randomButtons = new ArrayList<>();
-        for (WebElement removeButton : removeButtons) {
-            randomButtons.add(removeButton);
-        }
-        Collections.shuffle(randomButtons);
-
-        for(int i=0; i<num; i++){
-            randomButtons.get(i).click();
-        }
+        Utils.clickRandomButtons(num,removeButtons);
     }
-    public void clickAddRandomButtons(int num){//Num of random items you want to remove
-        if(num <=0){
-            return;
-        }
-        List<WebElement> randomButtons = new ArrayList<>();
-        for (WebElement addToCartButton : addToCartButtons) {
-            randomButtons.add(addToCartButton);
-        }
-        Collections.shuffle(randomButtons);
-
-        for(int i=0; i<num; i++){
-            randomButtons.get(i).click();
-        }
+    public void clickAddRandomButtons(int num){//Num of random items you want to add
+        Utils.clickRandomButtons(num,addToCartButtons);
     }
 
     public String getNumCartIcon(){

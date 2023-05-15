@@ -8,6 +8,8 @@ import io.cucumber.java.Scenario;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
@@ -18,9 +20,32 @@ public class Hooks {
     @Before
     public void before(Scenario scenario){
         log.info("starting" + scenario.getName());
-        WebDriverManager.firefoxdriver().setup();
-        FirefoxOptions options = new FirefoxOptions();
-        driver = new FirefoxDriver(options);
+
+        String browser = System.getProperty("browser");
+        String headless = System.getProperty("headless");
+
+        if (browser == null || browser.equalsIgnoreCase("firefox")) {
+            WebDriverManager.firefoxdriver().setup();
+            FirefoxOptions optionsFirefox = new FirefoxOptions();
+
+            if(headless != null && headless.equalsIgnoreCase("true")){
+                optionsFirefox.addArguments("--headless");
+            }
+
+            driver = new FirefoxDriver(optionsFirefox);
+
+        } else if (browser.equalsIgnoreCase("chrome")) {
+            WebDriverManager.chromedriver().setup();
+            ChromeOptions optionsChrome = new ChromeOptions();
+
+            if(headless != null && headless.equalsIgnoreCase("true")){
+                optionsChrome.addArguments("--headless");
+            }
+
+            driver = new ChromeDriver(optionsChrome);
+        } else {
+            throw new IllegalArgumentException("El navegador especificado no es válido");
+        }
         driver.manage().deleteAllCookies();
         driver.manage().window().maximize();
         PagesFactory.start(driver);

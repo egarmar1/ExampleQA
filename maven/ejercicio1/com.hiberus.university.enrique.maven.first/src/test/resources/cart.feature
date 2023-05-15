@@ -1,6 +1,8 @@
-@CarritoSuite
+@Cart
 Feature: Cart test suite
 
+  @testcase11
+  @smoke
   Scenario: Delete product from the cart
     Given the user is on the home page
     And the user provide the username "standard_user" and password "secret_sauce"

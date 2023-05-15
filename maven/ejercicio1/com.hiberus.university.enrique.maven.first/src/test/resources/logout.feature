@@ -1,6 +1,7 @@
 @Logout
 Feature: Logout test suite
 
+  @testcase14
   Scenario: Logout successfully
     Given the user is on the home page
     And the user provide the username "standard_user" and password "secret_sauce"

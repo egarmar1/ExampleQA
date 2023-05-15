@@ -1,4 +1,5 @@
 @Checkout
+@order
 Feature: Checkout test suite
 
   Background: Log in successfully
@@ -6,6 +7,7 @@ Feature: Checkout test suite
     And the user provide the username "standard_user" and password "secret_sauce"
     When the user clicks the login button
 
+  @testcase12
   @CheckPrice
   Scenario: Check that the final price is the sum of the products from the cart
     And  the user adds to cart 3 random products
@@ -15,6 +17,8 @@ Feature: Checkout test suite
     And the user clicks the button continue
     Then the order price(Item Total) is correctly displayed which is the sum of the products
 
+  @testcase13
+  @smoke
   @PlaceOrder
   Scenario: Complete an order
     And the user adds to cart 1 random products

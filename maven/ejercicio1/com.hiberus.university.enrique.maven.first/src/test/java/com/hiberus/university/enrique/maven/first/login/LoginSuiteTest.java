@@ -16,7 +16,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.concurrent.TimeUnit;
 
 
-
+@Ignore
 public class LoginSuiteTest {
     public static WebDriver driver;
     public LoginPage loginPage;

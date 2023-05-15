@@ -1,10 +1,12 @@
-@LoginSuite
+@Login
 Feature: Login test suite
 
   Background: Navigate to the home page
     Given the user is on the home page
 
   @loginOK
+  @testcase01
+  @smoke
   Scenario Outline: Verify valid user can login
     And the user provide the username "<username>" and password "<password>"
     When the user clicks the login button
@@ -15,6 +17,8 @@ Feature: Login test suite
   | standard_user | secret_sauce |
 
   @loginKO
+  @testcase02
+
   Scenario Outline: Verify invalid user can login
     And the user provide the username "<username>" and password "<password>"
     When the user clicks the login button

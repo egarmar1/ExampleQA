@@ -8,8 +8,9 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         plugin = {"pretty"},
         glue = {"com.hiberus.university.enrique.maven.first.stepdefs",
-                "com.hiberus.university.enrique.maven.first.support"},
-        features = {"src/test/resources"}
+                "com.hiberus.university.enrique.maven.first.support",
+        },
+        features = {"src/test/resources/parallel"}
 )
 public class CucumberRunnerTest {
 

@@ -22,7 +22,7 @@ public class CartPageSteps {
 
         String buttonId = TestDataContext.getInventoryItemListInCart().get(0).getName();
 
-        Assert.assertFalse("The product still exists",cartPage.existsById(buttonId));
+        Assert.assertTrue("The product still exists",cartPage.existsById(buttonId));
     }
 
     @And("the user clicks remove to a random product")

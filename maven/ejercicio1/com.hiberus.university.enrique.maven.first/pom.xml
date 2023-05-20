@@ -250,7 +250,7 @@
               <projectName>saucedemo test project</projectName>
               <outputDirectory>${project.build.directory}/surefire-reports</outputDirectory>
               <jsonFiles>
-                <param>**/*.json</param>
+                <param>**/cucumber.json</param>
               </jsonFiles>
             </configuration>
           </execution>

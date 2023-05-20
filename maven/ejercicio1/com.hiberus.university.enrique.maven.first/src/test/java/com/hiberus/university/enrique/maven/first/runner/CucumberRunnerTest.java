@@ -6,7 +6,9 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        plugin = {"pretty", "html:target/cucumber-reports.html"},
+        plugin = {"pretty", "json:target/surefire-reports/cucumber.json",
+                    "html:target/cucumber-html-report",
+        },
         glue = {"com.hiberus.university.enrique.maven.first.stepdefs",
                 "com.hiberus.university.enrique.maven.first.support"},
         features = {"src/test/resources"}

@@ -5,7 +5,7 @@ Feature: Cart test suite
   @smoke
   Scenario: Delete product from the cart
     Given the user is on the home page
-    And the user provide the username "standard_user" and password "secret_sauce"
+    And the user provide the username "standard_users" and password "secret_sauce"
     When the user clicks the login button
     And  the user adds to cart 2 random products
     And the user clicks the cart icon

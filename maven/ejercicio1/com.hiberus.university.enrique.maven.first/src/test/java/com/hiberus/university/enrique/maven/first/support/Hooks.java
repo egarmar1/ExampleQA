@@ -56,7 +56,7 @@ public class Hooks {
     @After
     public void after(Scenario scenario){
         if (scenario.isFailed()) {
-            // Capturar captura de pantalla y adjuntarla al reporte
+
             final byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
             scenario.attach(screenshot, "image/png", "Captura de pantalla");
         }

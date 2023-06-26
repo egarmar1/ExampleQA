@@ -5,7 +5,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import javax.jws.WebService;
 
 public class CheckOutCompletePage extends AbstractPage{
 
@@ -23,6 +22,6 @@ public class CheckOutCompletePage extends AbstractPage{
     }
 
     public String getCompleteText(){
-        return completeText.toString();
+        return completeText.getText();
     }
 }

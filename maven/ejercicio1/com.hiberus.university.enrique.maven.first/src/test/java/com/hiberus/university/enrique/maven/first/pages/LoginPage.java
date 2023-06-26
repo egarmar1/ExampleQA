@@ -53,7 +53,7 @@ public class LoginPage extends AbstractPage{
         passwordInput.sendKeys(password);
     }
 
-    public boolean hasUsernamePasswordError(String password){
+    public boolean hasErrorMessage(){
         return errorMessage.isDisplayed();
     }
 }

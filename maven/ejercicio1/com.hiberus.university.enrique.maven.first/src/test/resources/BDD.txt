@@ -1,0 +1,119 @@
+Login:
+
+Caso de prueba 1 (Realizar login)
+Given el usuario se encuentra en la página de inicio "https://www.saucedemo.com/"
+When el usuario proporciona el usuario "standard_user" y contraseña "secret_sauce"
+And el usuario hace click en el botón "Login"
+Then el usuario se encuentra en la página de inventario
+
+Caso de prueba 2 (Login incorrecto)
+Given el usuario se encuentra en la página de inicio "https://www.saucedemo.com/"
+When el usuario proporciona el usuario "standard" y contraseña "secret_sauce"
+And el usuario hace click en el botón "Login"
+Then el usuario se encuentra con un mensaje de error
+
+
+
+Inventario:
+
+Caso de prueba 3 (Validar que el numero de resultados es 6): 
+Given el usuario se encuentra en la página de inicio "https://www.saucedemo.com/"
+When el usuario proporciona el usuario "standard_user" y contraseña "secret_sauce"
+And el usuario hace click en el botón "Login"
+Then se muestran 6 productos
+
+Caso de prueba 4 (Validar que existe el producto Sauce labs Bolt T-shirt en el inventario): 
+Given el usuario se encuentra en la página de inicio "https://www.saucedemo.com/"
+When el usuario proporciona el usuario "standard_user" y contraseña "secret_sauce"
+And el usuario hace click en el botón "Login"
+Then se muestra el producto Sauce Labs Bolt T-shirt
+
+Caso de prueba 5 (Añadir el producto Sauce Labs Bolt T-shirt): 
+Given el usuario se encuentra en la página de inicio "https://www.saucedemo.com/"
+When el usuario proporciona el usuario "standard_user" y contraseña "secret_sauce"
+And el usuario hace click en el botón "Login"
+And el usuario agrega al carrito el producto Sauce Labs Bolt T-Shirt
+Then el icono del carrito muestra el numero 1
+
+Caso de prueba 6 (Eliminar producto del carrito desde el inventario): 
+Given el usuario se encuentra en la página de inicio "https://www.saucedemo.com/"
+When el usuario proporciona el usuario "standard_user" y contraseña "secret_sauce"
+And el usuario hace click en el botón "Login"
+And el usuario agrega al carrito el producto Sauce Labs Bolt T-Shirt
+And el usuario pulsa el botón remove del producto Sauce Labs Bolt T-shirt
+Then en el icono del carrito no aparece ningun numero
+
+Caso de prueba 7 (Agregar al carrito 3 productos): 
+Given el usuario se encuentra en la página de inicio "https://www.saucedemo.com/"
+When el usuario proporciona el usuario "standard_user" y contraseña "secret_sauce"
+And el usuario hace click en el botón "Login"
+And el usuario agrega al carrito 3 productos aleatorios
+Then en el icono del carrito aparece el numero 3
+
+
+Caso de prueba 8 (Ordenar el inventario por orden alfabético, Z a la A): 
+Given el usuario se encuentra en la página de inicio "https://www.saucedemo.com/"
+When el usuario proporciona el usuario "standard_user" y contraseña "secret_sauce"
+And el usuario hace click en el botón "Login"
+And el usuario escoge el filtro NAME (Z TO A)
+Then el usuario visualiza los productos ordenados alfabéticamente de la Z a la A
+
+Caso de prueba 10 (Ordenar el inventario de menor a mayor): 
+Given el usuario se encuentra en la página de inicio "https://www.saucedemo.com/"
+When el usuario proporciona el usuario "standard_user" y contraseña "secret_sauce"
+And el usuario hace click en el botón "Login"
+And el usuario escoge el filtro "PRICE (low to high)"
+Then el usuario visualiza los productos ordenados por precio de menor a mayor
+
+Caso de prueba 11 (Ordenar el inventario de mayor a menor): 
+Given el usuario se encuentra en la página de inicio "https://www.saucedemo.com/"
+When el usuario proporciona el usuario "standard_user" y contraseña "secret_sauce"
+And el usuario hace click en el botón "Login"
+And el usuario escoge el filtro "PRICE (high to low)"
+Then el usuario visualiza los productos ordenados por precio de mayor a menor
+
+
+
+Carrito:
+
+Caso de prueba 12 (Ordenar el inventario de mayor a menor): 
+Given el usuario se encuentra en la página de inicio "https://www.saucedemo.com/"
+When el usuario proporciona el usuario "standard_user" y contraseña "secret_sauce"
+And el usuario hace click en el botón "Login"
+And el usuario agrega 2 productos aleatorios al carrito
+And el usuario se redirige al carrito
+And el usuario elimina uno de los productos del carrito
+Then el usuario deja de visualizar en el carrito el producto eliminado
+
+
+Checkout:
+
+Caso de prueba 13 (Comprobar el precio final del checkout de varios productos):
+Given el usuario se encuentra en la página de inicio "https://www.saucedemo.com/"
+When el usuario proporciona el usuario "standard_user" y contraseña "secret_sauce"
+And el usuario hace click en el botón "Login"
+And el usuario agrega 3 productos aleatorios al carrito
+And el usuario se redirige al carrito
+And el usuario clicka el botón checkout
+And el usuario rellena los datos del checkout y clicka el botón continuar
+Then se muestra correctamente el precio del pedido que es la suma de los productos
+
+Caso de prueba 14 (Realizar un pedido):
+Given el usuario se encuentra en la página de inicio "https://www.saucedemo.com/"
+When el usuario proporciona el usuario "standard_user" y contraseña "secret_sauce"
+And el usuario hace click en el botón "Login"
+And el usuario agrega 1 producto aleatorio al carrito
+And el usuario se redirige al carrito
+And el usuario clicka el botón checkout
+And el usuario rellena los datos del checkout y clicka el botón continuar
+And el usuario clicka el botón finish
+Then el usuario se encuentra en una página en la que se muestra el mensaje: "Your order has been dispatched, and will arrive just as fast as the pony can get there!"
+
+
+LogOut:
+Caso de prueba 15 (Comprobar el Logout)
+Given el usuario se encuentra en la página de inicio "https://www.saucedemo.com/"
+When el usuario proporciona el usuario "standard_user" y contraseña "secret_sauce"
+And el usuario hace click en el botón "Login"
+And el usuario clicka el menu desplegable y clicka el botón logout
+Then el usuario se encuentra en la página del Login

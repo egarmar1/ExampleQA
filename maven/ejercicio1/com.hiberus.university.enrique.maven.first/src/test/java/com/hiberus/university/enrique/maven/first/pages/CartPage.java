@@ -1,15 +1,14 @@
 package com.hiberus.university.enrique.maven.first.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.PageFactory;
 
-import java.lang.ref.WeakReference;
 import java.util.List;
+import java.util.Random;
 
 public class CartPage extends AbstractPage{
 
@@ -17,15 +16,11 @@ public class CartPage extends AbstractPage{
 
     @FindBy(css ="[name='checkout']")
     private WebElement checkoutButton;
-    @FindAll({
-            @FindBy(css = "[name^='remove']")
-    })
+    @FindBy(css = "[name^='remove']")
     private List<WebElement> removeButtons;
     @FindBy(css = "button[data-test='continue-shopping']")
     private WebElement continueShoppingButton;
-    @FindAll({
-            @FindBy(css = "div[class='cart_item']")
-    })
+    @FindBy(css = "div[class='cart_item']")
     private List<WebElement> itemList;
 
 
@@ -46,10 +41,25 @@ public class CartPage extends AbstractPage{
         return itemList;
     }
 
-    public List<WebElement> getRemoveButtons(){
-        return removeButtons;
+    public String deleteRandomFromCart(){
+
+        Random rand = new Random();
+        int index = rand.nextInt(removeButtons.size());
+        String productName = removeButtons.get(index).getAttribute("id");
+
+        removeButtons.get(index).click();
+
+        return productName;
     }
 
+    public boolean existsById(String id){
+        try{
+            getDriver().findElement(By.cssSelector("#"+id)).isDisplayed();
+            return true;
+        }catch (NoSuchElementException ne){
+            return false;
+        }
 
+    }
 
 }

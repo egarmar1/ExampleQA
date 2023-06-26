@@ -1,6 +1,5 @@
 package com.hiberus.university.enrique.maven.first.pages;
 
-import com.hiberus.university.enrique.maven.first.utils.Utils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;

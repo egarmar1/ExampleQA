@@ -38,7 +38,7 @@ public class LoginPageSteps {
     @Then("the user is logged successfully and is into the inventory page")
     public void theUserIsLoggedSuccessfullyAndIsIntoTheInventoryPage() {
         Assert.assertEquals("The url is not inventory page",
-                inventoryPage.PAGE_URL,PagesFactory.getInstance().getDriver().getCurrentUrl());
+                inventoryPage.PAGE_URL, PagesFactory.getInstance().getDriver().getCurrentUrl());
     }
 
     @Then("the user views a message error")
@@ -48,6 +48,6 @@ public class LoginPageSteps {
 
     @Then("the user is on the login page")
     public void theUserIsOnTheLoginPage() {
-        Assert.assertEquals("No se ha redirigido a la pantalla de inicio tras cerrar sesion",loginPage.PAGE_URL,PagesFactory.getInstance().getDriver().getCurrentUrl());
+        Assert.assertEquals("No se ha redirigido a la pantalla de inicio tras cerrar sesion", loginPage.PAGE_URL, PagesFactory.getInstance().getDriver().getCurrentUrl());
     }
 }

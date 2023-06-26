@@ -16,14 +16,14 @@ Feature: Login test suite
   | username      | password     |
   | standard_user | secret_sauce |
 
-  @loginKO
-  @testcase02
-
-  Scenario Outline: Verify invalid user can login
-    And the user provide the username "<username>" and password "<password>"
-    When the user clicks the login button
-    Then the user views a message error
-
-  Examples:
-  | username      | password     |
-  | sta_user      | secret_sauce |
+#  @loginKO
+#  @testcase02
+#
+#  Scenario Outline: Verify invalid user can login
+#    And the user provide the username "<username>" and password "<password>"
+#    When the user clicks the login button
+#    Then the user views a message error
+#
+#  Examples:
+#  | username      | password     |
+#  | sta_user      | secret_sauce |

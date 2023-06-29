@@ -19,7 +19,7 @@ Feature: Login test suite
   @loginKO
   @testcase02
 
-  Scenario Outline: Verify invalid user can login
+  Scenario Outline: Verify invalid user cannot login
     And the user provide the username "<username>" and password "<password>"
     When the user clicks the login button
     Then the user views a message error

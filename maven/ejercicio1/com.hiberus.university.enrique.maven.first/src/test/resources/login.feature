@@ -26,4 +26,4 @@ Feature: Login test suite
 
   Examples:
   | username      | password     |
-  | standard      | secret_sauce |
+  | standard_user      | secret_sauce |
